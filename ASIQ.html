@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="ASIQ — utility-токен музыкальной экосистемы ASIQPAI в сети TON.">
+  <meta property="og:title" content="ASIQ — ASIQPAI Utility Token">
+  <meta property="og:description" content="Music, creator rewards and Web3 utility on TON.">
+  <meta property="og:type" content="website">
+  <title>ASIQ — ASIQPAI Utility Token</title>
+  <style>
+    :root{
+      --bg:#070707;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.085);
+      --line:rgba(230,190,84,.22);--gold:#e6be54;--gold2:#fff0a6;
+      --text:#f7f4ed;--muted:#aaa79f;--green:#65d39a;--radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--text);background:
+        radial-gradient(circle at 78% 6%,rgba(230,190,84,.13),transparent 28rem),
+        radial-gradient(circle at 5% 42%,rgba(83,70,34,.15),transparent 25rem),var(--bg);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.6;overflow-x:hidden
+    }
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;
+      background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:56px 56px;mask-image:linear-gradient(to bottom,#000,transparent 75%)
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+    .nav{
+      position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(255,255,255,.07);
+      background:rgba(7,7,7,.76);backdrop-filter:blur(18px)
+    }
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.16em}
+    .coin{
+      display:grid;place-items:center;width:38px;height:38px;border:1px solid #856a2d;border-radius:50%;
+      background:radial-gradient(circle at 30% 25%,#fff0a4,#c99b32 45%,#6a4b14);
+      color:#171003;font-size:18px;box-shadow:0 0 30px rgba(230,190,84,.18)
+    }
+    .links{display:flex;align-items:center;gap:26px;color:#c7c4bd;font-size:14px}
+    .links a:hover{color:var(--gold2)}
+    .lang{
+      border:1px solid var(--line);background:var(--panel);color:var(--gold2);
+      padding:9px 13px;border-radius:999px;cursor:pointer
+    }
+    .hero{padding:108px 0 74px;text-align:center}
+    .eyebrow{
+      display:inline-flex;gap:9px;align-items:center;padding:7px 13px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(230,190,84,.06);color:var(--gold2);
+      text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:800
+    }
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
+    h1{font-size:clamp(68px,13vw,154px);line-height:.84;margin:35px 0 25px;letter-spacing:-.075em}
+    .gold{color:transparent;background:linear-gradient(125deg,#9a7123,#fff1a8 45%,#c08e27);background-clip:text}
+    .lead{max-width:700px;margin:0 auto;color:#c0bdb5;font-size:clamp(18px,2.3vw,25px)}
+    .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:38px}
+    .btn{
+      min-height:52px;padding:0 22px;border-radius:14px;display:inline-flex;align-items:center;
+      justify-content:center;gap:10px;font-weight:800;border:1px solid var(--line);
+      background:var(--panel);transition:.2s ease
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(230,190,84,.55);background:var(--panel2)}
+    .btn.primary{color:#171003;background:linear-gradient(135deg,#f7db82,#bd8723);border-color:#e8c45f}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:64px auto 0;max-width:900px}
+    .stat{padding:18px;border:1px solid rgba(255,255,255,.08);border-radius:17px;background:rgba(255,255,255,.035)}
+    .stat b{display:block;font-size:20px;color:var(--gold2)}
+    .stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+    section{padding:55px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:25px}
+    .kicker{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+    h2{font-size:clamp(32px,5vw,54px);line-height:1.05;letter-spacing:-.045em;margin:7px 0}
+    .section-head p{max-width:480px;color:var(--muted);margin:0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{
+      position:relative;padding:28px;border:1px solid rgba(255,255,255,.085);border-radius:var(--radius);
+      background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+      box-shadow:inset 0 1px rgba(255,255,255,.045)
+    }
+    .card:hover{border-color:var(--line)}
+    .icon{font-size:24px;margin-bottom:23px;color:var(--gold)}
+    .card h3{font-size:20px;margin:0 0 8px}
+    .card p{color:var(--muted);margin:0;font-size:15px}
+    .token-card{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+    .contract{display:flex;align-items:center;gap:13px;margin-top:24px}
+    code{font-family:"SFMono-Regular",Consolas,monospace}
+    .address{
+      min-width:0;flex:1;padding:15px;border-radius:13px;background:#090909;border:1px solid rgba(255,255,255,.08);
+      color:#dad6cb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px
+    }
+    .copy{
+      flex:none;border:1px solid var(--line);background:rgba(230,190,84,.08);color:var(--gold2);
+      border-radius:13px;padding:14px 16px;cursor:pointer
+    }
+    .info{display:grid;grid-template-columns:1fr 1fr;gap:0 25px}
+    .row{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .row span{color:var(--muted)}.row b{text-align:right}
+    .pool{
+      overflow:hidden;padding:38px;background:
+      radial-gradient(circle at 88% 10%,rgba(230,190,84,.2),transparent 18rem),
+      linear-gradient(135deg,rgba(230,190,84,.1),rgba(255,255,255,.025))
+    }
+    .pool-number{font-size:clamp(46px,8vw,88px);line-height:1;font-weight:900;letter-spacing:-.06em;color:var(--gold2)}
+    .pool p{max-width:670px;color:#c0bdb5;font-size:17px}
+    .roadmap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .roadmap ul{list-style:none;margin:22px 0 0;padding:0}
+    .roadmap li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.065);color:#cfcbc2}
+    .roadmap li:before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;margin-right:11px;border-radius:50%;background:rgba(101,211,154,.1);color:var(--green);font-size:12px}
+    .roadmap .future li:before{content:"↗";background:rgba(230,190,84,.1);color:var(--gold)}
+    .notice{border-color:rgba(230,190,84,.18)}
+    .notice-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-top:20px;color:#c8c4ba}
+    .notice-list span:before{content:"•";color:var(--gold);margin-right:9px}
+    .socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .socials a{padding:10px 14px;border:1px solid rgba(255,255,255,.09);border-radius:11px;color:#d2cec4}
+    .socials a:hover{border-color:var(--line);color:var(--gold2)}
+    footer{padding:46px 0 70px;color:#817f79;border-top:1px solid rgba(255,255,255,.07);margin-top:55px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px}
+    [data-lang="en"] .ru,[data-lang="ru"] .en{display:none}
+    @media(max-width:800px){
+      .links a:not(.lang){display:none}.hero{padding-top:75px}.stats{grid-template-columns:1fr 1fr}
+      .grid,.token-card,.roadmap{grid-template-columns:1fr}.section-head{display:block}
+      .section-head p{margin-top:14px}.info{grid-template-columns:1fr}.notice-list{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .wrap{width:min(100% - 24px,1160px)}.nav-inner{height:66px}.brand{font-size:14px}
+      .hero{padding-bottom:46px}h1{font-size:72px}.stats{gap:8px}.stat{padding:14px 8px}
+      section{padding:38px 0}.card,.pool{padding:22px}.contract{align-items:stretch}.copy{padding:12px}
+      .footer-inner{display:block}.footer-inner span{display:block;margin-top:8px}
+    }
+  </style>
+</head>
+<body data-lang="ru">
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="coin">♛</span><span>ASIQPAI</span></a>
+      <div class="links">
+        <a href="#utility"><span class="ru">Возможности</span><span class="en">Utility</span></a>
+        <a href="#token"><span class="ru">Токен</span><span class="en">Token</span></a>
+        <a href="#roadmap"><span class="ru">Планы</span><span class="en">Roadmap</span></a>
+        <button class="lang" id="langBtn" type="button">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero wrap">
+      <div class="eyebrow"><span class="dot"></span><span class="ru">Работает в сети TON</span><span class="en">Live on TON</span></div>
+      <h1 class="gold">ASIQ</h1>
+      <p class="lead ru">Utility-токен музыкальной экосистемы ASIQPAI: музыка, награды авторов и Web3-возможности внутри Telegram.</p>
+      <p class="lead en">The utility token powering the ASIQPAI music ecosystem: creator rewards, digital content and Web3 utility inside Telegram.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://app.dedust.io/swap/GRAM/EQDtaiYQRMlcGHXVkcK873McLzx-JQUZtyR8W1O6e2XISp52" target="_blank" rel="noopener"><span class="ru">Купить ASIQ</span><span class="en">Buy ASIQ</span> ↗</a>
+        <a class="btn" href="https://t.me/asiqpai_bot" target="_blank" rel="noopener"><span class="ru">Открыть Mini App</span><span class="en">Open Mini App</span></a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>TON</b><span><span class="ru">Сеть</span><span class="en">Network</span></span></div>
+        <div class="stat"><b>ASIQ</b><span><span class="ru">Символ</span><span class="en">Symbol</span></span></div>
+        <div class="stat"><b>ASIQ / GRAM</b><span><span class="ru">Пара</span><span class="en">Pair</span></span></div>
+        <div class="stat"><b>DeDust</b><span>DEX</span></div>
+      </div>
+    </header>
+
+    <section id="utility">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="kicker">ASIQPAI Ecosystem</div><h2><span class="ru">Полезность токена</span><span class="en">Token utility</span></h2></div>
+          <p class="ru">ASIQ объединяет слушателей, артистов и цифровые музыкальные продукты в одной Telegram-экосистеме.</p>
+          <p class="en">ASIQ connects listeners, artists and digital music products in one Telegram ecosystem.</p>
+        </div>
+        <div class="grid">
+          <article class="card"><div class="icon">♫</div><h3><span class="ru">Музыка и биты</span><span class="en">Music & beats</span></h3><p class="ru">Плеер, каталог треков, Beat Store и цифровые лицензии.</p><p class="en">Player, track library, Beat Store and digital licenses.</p></article>
+          <article class="card"><div class="icon">♛</div><h3><span class="ru">Награды</span><span class="en">Rewards</span></h3><p class="ru">Ежедневные награды, программа для авторов и вывод ASIQ.</p><p class="en">Daily rewards, creator incentives and ASIQ withdrawals.</p></article>
+          <article class="card"><div class="icon">◇</div><h3><span class="ru">TON Web3</span><span class="en">TON Web3</span></h3><p class="ru">TON Connect, отображение баланса и взаимодействие с токеном.</p><p class="en">TON Connect, token balance display and wallet utility.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="token">
+      <div class="wrap token-card">
+        <article class="card">
+          <div class="kicker">Jetton Master</div>
+          <h2><span class="ru">Проверьте адрес</span><span class="en">Verify the address</span></h2>
+          <p class="ru">Всегда сверяйте Jetton Master перед обменом, переводом или добавлением ликвидности.</p>
+          <p class="en">Always verify the Jetton Master before swapping, transferring or adding liquidity.</p>
+          <div class="contract">
+            <code class="address" id="address">EQDtaiYQRMlcGHXVkcK873McLzx-JQUZtyR8W1O6e2XISp52</code>
+            <button class="copy" id="copyBtn" type="button"><span class="ru">Копировать</span><span class="en">Copy</span></button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="kicker"><span class="ru">Информация</span><span class="en">Information</span></div>
+          <div class="info">
+            <div class="row"><span><span class="ru">Название</span><span class="en">Name</span></span><b>ASIQ</b></div>
+            <div class="row"><span><span class="ru">Символ</span><span class="en">Symbol</span></span><b>ASIQ</b></div>
+            <div class="row"><span><span class="ru">Сеть</span><span class="en">Network</span></span><b>TON</b></div>
+            <div class="row"><span><span class="ru">Торговая пара</span><span class="en">Liquidity pair</span></span><b>ASIQ / GRAM</b></div>
+            <div class="row"><span>DEX</span><b>DeDust</b></div>
+            <div class="row"><span>TON Domain</span><b>asiqpai.ton</b></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <article class="card pool">
+          <div class="kicker">Mini App Reward Pool</div>
+          <div class="pool-number">150,000 ASIQ</div>
+          <p class="ru">Уже выделено для фонда наград Mini App. Система предназначена для поддержки пользователей, артистов и авторов по мере развития ASIQPAI.</p>
+          <p class="en">Already allocated to the Mini App reward pool, designed to support users, artists and creators as ASIQPAI develops.</p>
+          <a class="btn" href="https://t.me/asiqpai_bot" target="_blank" rel="noopener"><span class="ru">Перейти в ASIQPAI</span><span class="en">Enter ASIQPAI</span> →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">Roadmap</div><h2><span class="ru">Развитие экосистемы</span><span class="en">Ecosystem progress</span></h2></div></div>
+        <div class="roadmap">
+          <article class="card">
+            <div class="kicker"><span class="ru">Доступно</span><span class="en">Available</span></div>
+            <ul>
+              <li><span class="ru">ASIQ Jetton запущен в TON</span><span class="en">ASIQ Jetton launched on TON</span></li>
+              <li><span class="ru">Ликвидность ASIQ / GRAM на DeDust</span><span class="en">ASIQ / GRAM liquidity on DeDust</span></li>
+              <li><span class="ru">Telegram Mini App и авторизация</span><span class="en">Telegram Mini App and authentication</span></li>
+              <li>TON Connect & ASIQ balance</li>
+              <li><span class="ru">Daily Reward и вывод наград</span><span class="en">Daily Reward and withdrawal flow</span></li>
+              <li><span class="ru">Музыкальный плеер и библиотека</span><span class="en">Music player and track library</span></li>
+            </ul>
+          </article>
+          <article class="card future">
+            <div class="kicker"><span class="ru">В разработке</span><span class="en">In development</span></div>
+            <ul>
+              <li><span class="ru">Расширенный музыкальный каталог</span><span class="en">Expanded music catalogue</span></li>
+              <li><span class="ru">Полный Beat Store и типы лицензий</span><span class="en">Full Beat Store and license types</span></li>
+              <li><span class="ru">Личная библиотека пользователя</span><span class="en">Personal user library</span></li>
+              <li><span class="ru">Отправка треков артистами</span><span class="en">Artist track submissions</span></li>
+              <li><span class="ru">Награды авторов и админ-панель</span><span class="en">Creator rewards and admin dashboard</span></li>
+              <li><span class="ru">Функции сообщества</span><span class="en">Community features</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <article class="card notice">
+          <div class="kicker">Security Notice</div>
+          <h2><span class="ru">Безопасность прежде всего</span><span class="en">Security comes first</span></h2>
+          <div class="notice-list">
+            <span class="ru">Проверяйте адрес Jetton Master</span><span class="en">Verify the Jetton Master address</span>
+            <span class="ru">Используйте только официальные ссылки</span><span class="en">Use official ASIQPAI links only</span>
+            <span class="ru">Проверяйте детали каждой транзакции</span><span class="en">Review every transaction</span>
+            <span class="ru">Никому не сообщайте seed-фразу</span><span class="en">Never share your seed phrase</span>
+          </div>
+          <p style="color:#77746d;margin-top:26px;font-size:13px"><span class="ru">ASIQ — community- и utility-токен развивающейся музыкальной экосистемы. Информация на сайте не является финансовой рекомендацией и не гарантирует цену, ликвидность или доходность.</span><span class="en">ASIQ is a community and utility token for a developing music ecosystem. This information is not financial advice and does not guarantee price, liquidity or returns.</span></p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="kicker"><span class="ru">Официальные ссылки</span><span class="en">Official links</span></div>
+        <div class="socials">
+          <a href="https://t.me/asiqpai_bot" target="_blank" rel="noopener">Mini App ↗</a>
+          <a href="https://t.me/asiqpaihub" target="_blank" rel="noopener">Community ↗</a>
+          <a href="https://qaztrap.github.io/asiqpai/" target="_blank" rel="noopener">Website ↗</a>
+          <a href="https://youtube.com/@asiqpai" target="_blank" rel="noopener">YouTube ↗</a>
+          <a href="https://www.tiktok.com/@asiqpai" target="_blank" rel="noopener">TikTok ↗</a>
+          <a href="https://www.instagram.com/asiqpai" target="_blank" rel="noopener">Instagram ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><b>ASIQPAI</b><span>© 2026 ASIQPAI · Built on TON</span></div>
+  </footer>
+
+  <script>
+    const body=document.body,langBtn=document.getElementById("langBtn");
+    langBtn.addEventListener("click",()=>{
+      const next=body.dataset.lang==="ru"?"en":"ru";
+      body.dataset.lang=next;document.documentElement.lang=next;
+      langBtn.textContent=next==="ru"?"EN":"RU";
+    });
+    document.getElementById("copyBtn").addEventListener("click",async function(){
+      const value=document.getElementById("address").textContent;
+      try{await navigator.clipboard.writeText(value)}
+      catch(e){const t=document.createElement("textarea");t.value=value;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove()}
+      const old=this.innerHTML;
+      this.textContent=body.dataset.lang==="ru"?"Скопировано ✓":"Copied ✓";
+      setTimeout(()=>this.innerHTML=old,1600);
+    });
+  </script>
+</body>
+</html>
